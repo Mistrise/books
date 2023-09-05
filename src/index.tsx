@@ -3,17 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {RouterProvider} from "react-router-dom";
-import {router} from "./router";
-import {ChakraProvider} from "@chakra-ui/react";
+import router from "./router";
+import {ChakraProvider, ColorModeScript, theme} from "@chakra-ui/react";
+import {Provider} from "react-redux";
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <ChakraProvider>
-        <RouterProvider router={router} />
-    </ChakraProvider>
+      <Provider store={}>
+        <ChakraProvider theme={theme}>
+            <ColorModeScript initialColorMode={theme.config.initialColorMode}/>
+            <RouterProvider router={router} />
+        </ChakraProvider>
+      </Provider>
   </React.StrictMode>
 );
 

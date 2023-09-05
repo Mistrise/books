@@ -3,11 +3,19 @@ import {
 } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import ErrorPage from "./pages/ErrorPage";
+import Layout from "./pages/Layout";
+import BookDetailPage from "./pages/BookDetailPage";
 
-export const router = createBrowserRouter([
+const router = createBrowserRouter([
     {
         path: "/",
         errorElement: <ErrorPage/>,
-        element: <MainPage/>,
+        element: <Layout/>,
+        children: [
+            {index: true, element: <MainPage/>},
+            {path: 'book/:id', element: <BookDetailPage/>}
+        ]
     },
 ]);
+
+export default router
